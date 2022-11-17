@@ -1,4 +1,6 @@
+import 'package:counterr_7/showDataPage.dart';
 import 'package:flutter/material.dart';
+import 'package:counterr_7/form.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Program Counter',
+      title: 'Counter_7',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -90,6 +92,15 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  String dropdownValue = '';
+  String holder = '';
+
+  void getDropDownItem() {
+    setState(() {
+      holder = dropdownValue;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -103,6 +114,45 @@ class _MyHomePageState extends State<MyHomePage> {
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           title: Text(widget.title),
+        ),
+        // Menambahkan drawer menu
+        drawer: Drawer(
+          child: Column(
+            children: [
+              // Menambahkan clickable menu
+              ListTile(
+                title: const Text('Counter_7'),
+                onTap: () {
+                  // Route menu ke halaman utama
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyHomePage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text('Tambah Budget'),
+                onTap: () {
+                  // Route menu ke halaman form
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyFormPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text('Data Budget'),
+                onTap: () {
+                  // Route menu ke halaman to do
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const BudgetDataPage()),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
         body: Center(
           // Center is a layout widget. It takes a single child and positions it
